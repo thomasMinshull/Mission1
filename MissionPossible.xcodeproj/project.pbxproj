@@ -18,6 +18,7 @@
 		55F73CC51BD2A94900A7A4E9 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F73CC41BD2A94900A7A4E9 /* DetailsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		55F73CC81BD2B7F000A7A4E9 /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F73CC71BD2B7F000A7A4E9 /* TVShow.m */; settings = {ASSET_TAGS = (); }; };
 		55F73CCB1BD2B97800A7A4E9 /* TVShowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F73CCA1BD2B97800A7A4E9 /* TVShowManager.m */; settings = {ASSET_TAGS = (); }; };
+		8884810B7C524D161B6E2810 /* libPods-MissionPossible.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF2136CE9A55D12F2DE5213 /* libPods-MissionPossible.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3CF2136CE9A55D12F2DE5213 /* libPods-MissionPossible.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MissionPossible.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5521B61E1BD1CEBD00082BD8 /* MissionPossible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MissionPossible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5521B6221BD1CEBD00082BD8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5521B6241BD1CEBD00082BD8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,6 +62,8 @@
 		55F73CC71BD2B7F000A7A4E9 /* TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShow.m; sourceTree = "<group>"; };
 		55F73CC91BD2B97800A7A4E9 /* TVShowManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVShowManager.h; sourceTree = "<group>"; };
 		55F73CCA1BD2B97800A7A4E9 /* TVShowManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShowManager.m; sourceTree = "<group>"; };
+		B0A1A99E7651851750A780E5 /* Pods-MissionPossible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionPossible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MissionPossible/Pods-MissionPossible.debug.xcconfig"; sourceTree = "<group>"; };
+		CB8D3C7C5AA61D886EAE150C /* Pods-MissionPossible.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionPossible.release.xcconfig"; path = "Pods/Target Support Files/Pods-MissionPossible/Pods-MissionPossible.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8884810B7C524D161B6E2810 /* libPods-MissionPossible.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +99,8 @@
 				5521B63A1BD1CEBD00082BD8 /* MissionPossibleTests */,
 				5521B6451BD1CEBD00082BD8 /* MissionPossibleUITests */,
 				5521B61F1BD1CEBD00082BD8 /* Products */,
+				7844A0C8B9761B12C3FAD377 /* Pods */,
+				CF47A5DD00FFBA9DA422A2E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +170,23 @@
 			name = Entities;
 			sourceTree = "<group>";
 		};
+		7844A0C8B9761B12C3FAD377 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B0A1A99E7651851750A780E5 /* Pods-MissionPossible.debug.xcconfig */,
+				CB8D3C7C5AA61D886EAE150C /* Pods-MissionPossible.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CF47A5DD00FFBA9DA422A2E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3CF2136CE9A55D12F2DE5213 /* libPods-MissionPossible.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,9 +194,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5521B64B1BD1CEBD00082BD8 /* Build configuration list for PBXNativeTarget "MissionPossible" */;
 			buildPhases = (
+				50053A1C7943D27F92825823 /* Check Pods Manifest.lock */,
 				5521B61A1BD1CEBD00082BD8 /* Sources */,
 				5521B61B1BD1CEBD00082BD8 /* Frameworks */,
 				5521B61C1BD1CEBD00082BD8 /* Resources */,
+				F334BB8A6FFD973599160AB6 /* Embed Pods Frameworks */,
+				056EFA72EFC4F3375CF49E2C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -290,6 +317,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		056EFA72EFC4F3375CF49E2C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MissionPossible/Pods-MissionPossible-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50053A1C7943D27F92825823 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F334BB8A6FFD973599160AB6 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MissionPossible/Pods-MissionPossible-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5521B61A1BD1CEBD00082BD8 /* Sources */ = {
@@ -438,6 +513,7 @@
 		};
 		5521B64C1BD1CEBD00082BD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0A1A99E7651851750A780E5 /* Pods-MissionPossible.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MissionPossible/Info.plist;
@@ -449,6 +525,7 @@
 		};
 		5521B64D1BD1CEBD00082BD8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB8D3C7C5AA61D886EAE150C /* Pods-MissionPossible.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MissionPossible/Info.plist;

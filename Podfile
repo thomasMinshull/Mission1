@@ -3,6 +3,7 @@
 
 target 'MissionPossible' do
 
+pod 'SDWebImage' 
 end
 
 target 'MissionPossibleTests' do
