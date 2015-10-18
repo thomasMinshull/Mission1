@@ -4,6 +4,8 @@
 target 'MissionPossible' do
 
 pod 'SDWebImage' 
+pod 'MBProgressHUD'
+
 end
 
 target 'MissionPossibleTests' do
