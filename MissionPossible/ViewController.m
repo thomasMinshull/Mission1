@@ -11,6 +11,7 @@
 #import "TVShow.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "DetailsViewController.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface ViewController (){
     NSMutableArray *tableViewData;
@@ -27,6 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.tableView.delegate = self;
     tableViewData = [[NSMutableArray alloc] init];
     tvShowManager = [[TVShowManager alloc] init];
@@ -59,6 +61,7 @@
         NSLog(@"tv show name= %@", show.name);
         [tableViewData addObject:show];
     }
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self.tableView reloadData];
 }
 
