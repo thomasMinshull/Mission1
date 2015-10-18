@@ -17,6 +17,7 @@
     NSMutableArray *tableViewData;
     TVShowManager *tvShowManager;
     TVShow *aShow;
+    int page;
 }
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
@@ -32,8 +33,9 @@
     self.tableView.delegate = self;
     tableViewData = [[NSMutableArray alloc] init];
     tvShowManager = [[TVShowManager alloc] init];
-    tvShowManager.delegate = self; 
-    [tvShowManager fetchTVShowsByPage:0];
+    tvShowManager.delegate = self;
+    page = 0;
+    [tvShowManager fetchTVShowsByPage:page];
 }
 
 - (void)didReceiveMemoryWarning {

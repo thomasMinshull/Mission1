@@ -13,10 +13,8 @@
 
 - (void)fetchTVShowsByPage:(int)page { // need to implement page
     NSLog(@"fetchTVShowxByPage called");
-   
-    //NSMutableArray *tvShows = [[NSMutableArray alloc] init];
     
-    NSString *urlAsString = @"http://api.tvmaze.com/shows/1/episodes";
+    NSString *urlAsString = [[@"http://api.tvmaze.com/shows/" stringByAppendingString: [NSString stringWithFormat:@"%i",page + 1]] stringByAppendingString: @"/episodes"];
     
     // Fetch from the API
     NSURL *url = [NSURL URLWithString:urlAsString];
