@@ -119,14 +119,10 @@
 			children = (
 				5521B6241BD1CEBD00082BD8 /* AppDelegate.h */,
 				5521B6251BD1CEBD00082BD8 /* AppDelegate.m */,
-				5521B6271BD1CEBD00082BD8 /* ViewController.h */,
-				5521B6281BD1CEBD00082BD8 /* ViewController.m */,
-				55F73CC31BD2A94900A7A4E9 /* DetailsViewController.h */,
-				55F73CC41BD2A94900A7A4E9 /* DetailsViewController.m */,
+				55F73CCD1BD3DF4F00A7A4E9 /* ViewControllers */,
 				5521B62A1BD1CEBD00082BD8 /* Main.storyboard */,
 				55F73CCC1BD2B9BB00A7A4E9 /* Entities */,
-				55F73CC91BD2B97800A7A4E9 /* TVShowManager.h */,
-				55F73CCA1BD2B97800A7A4E9 /* TVShowManager.m */,
+				55F73CCE1BD3DF7400A7A4E9 /* TVShowManagers */,
 				5521B62D1BD1CEBD00082BD8 /* Assets.xcassets */,
 				5521B62F1BD1CEBD00082BD8 /* LaunchScreen.storyboard */,
 				5521B6321BD1CEBD00082BD8 /* Info.plist */,
@@ -168,6 +164,26 @@
 				55F73CC71BD2B7F000A7A4E9 /* TVShow.m */,
 			);
 			name = Entities;
+			sourceTree = "<group>";
+		};
+		55F73CCD1BD3DF4F00A7A4E9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5521B6271BD1CEBD00082BD8 /* ViewController.h */,
+				5521B6281BD1CEBD00082BD8 /* ViewController.m */,
+				55F73CC31BD2A94900A7A4E9 /* DetailsViewController.h */,
+				55F73CC41BD2A94900A7A4E9 /* DetailsViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		55F73CCE1BD3DF7400A7A4E9 /* TVShowManagers */ = {
+			isa = PBXGroup;
+			children = (
+				55F73CC91BD2B97800A7A4E9 /* TVShowManager.h */,
+				55F73CCA1BD2B97800A7A4E9 /* TVShowManager.m */,
+			);
+			name = TVShowManagers;
 			sourceTree = "<group>";
 		};
 		7844A0C8B9761B12C3FAD377 /* Pods */ = {

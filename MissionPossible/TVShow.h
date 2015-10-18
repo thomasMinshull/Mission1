@@ -11,7 +11,8 @@
 @interface TVShow : NSObject
 
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *imageURL;
+@property (strong, nonatomic) NSString *thumbnailURL;
 @property (strong, nonatomic) NSString *showDescription;
+@property (strong, nonatomic) NSString *imageURL;
 
 @end

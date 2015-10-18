@@ -11,25 +11,68 @@
 
 @implementation TVShowManager
 
-- (void)fetchTVShowsByPage:(int)page {
+- (void)fetchTVShowsByPage:(int)page { // need to implement page
     NSLog(@"fetchTVShowxByPage called");
    
-    NSMutableArray *tvShows = [[NSMutableArray alloc] init];
-    TVShow *show1 = [[TVShow alloc] init];
-    show1.name = @"Kirby Buckets";
-    show1.imageURL = @"http://www.tvmaze.com/shows/250/kirby-buckets";
-    show1.showDescription = @"The single-camera series that mixes live-action and animation stars Jacob Bertrand as the title character. <strong><em>\"Kirby Buckets\"</em></strong> introduces viewers to the vivid imagination of charismatic 13-year-old Kirby Buckets, who dreams of becoming a famous animator like his idol, Mac MacCallister. With his two best friends, Fish and Eli, by his side, Kirby navigates his eccentric town of Forest Hills where the trio usually find themselves trying to get out of a predicament before Kirby's sister, Dawn, and her best friend, Belinda, catch them. Along the way, Kirby is joined by his animated characters, each with their own vibrant personality that only he and viewers can see.";
+    //NSMutableArray *tvShows = [[NSMutableArray alloc] init];
     
-    TVShow *show2 = [[TVShow alloc] init];
-    show2.name = @"Downton Abbey";
-    show2.imageURL = @"http://www.tvmaze.com/shows/251/downton-abbey";
-    show2.showDescription = @"The Downton Abbey estate stands a splendid example of confidence and mettle, its family enduring for generations and its staff a well-oiled machine of propriety. But change is afoot at Downton — change far surpassing the new electric lights and telephone. A crisis of inheritance threatens to displace the resident Crawley family, in spite of the best efforts of the noble and compassionate Earl, Robert Crawley ; his American heiress wife, Cora his comically implacable, opinionated mother, Violet and his beautiful, eldest daughter, Mary, intent on charting her own course. Reluctantly, the family is forced to welcome its heir apparent, the self-made and proudly modern Matthew Crawley himself none too happy about the new arrangements. As Matthew's bristly relationship with Mary begins to crackle with electricity, hope for the future of Downton's dynasty takes shape. But when petty jealousies and ambitions grow among the family and the staff, scheming and secrets — both delicious and dangerous — threaten to derail the scramble to preserve Downton Abbey. Created and written by Oscar-winner Julian Fellowes, <em>Downton Abbey</em> offers a spot-on portrait of a vanishing way of life.";
+    NSString *urlAsString = @"http://api.tvmaze.com/shows/1/episodes";
     
-    [tvShows addObject:show1];
-    [tvShows addObject:show2];
-     
-    [self.delegate tvShowsFetched:tvShows];
-    
+    // Fetch from the API
+    NSURL *url = [NSURL URLWithString:urlAsString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection
+     sendAsynchronousRequest: urlRequest
+     queue:queue
+     completionHandler:^(NSURLResponse *response,
+                         NSData *data,
+                         NSError *error) {
+         if ([data length] >0 && error == nil) {
+             NSLog(@"data retreved in TVShowManager completion block");
+             NSError *error = nil;
+             
+             id jsonObject = [NSJSONSerialization
+                              JSONObjectWithData:data
+                              options:NSJSONReadingAllowFragments
+                              error:&error];
+             if(jsonObject != nil && error == nil){
+                 NSLog(@"sucess JSON Deserialized!");
+                 NSLog(@"Deserialized JSON: %@", jsonObject);
+                 
+                 if([jsonObject isKindOfClass:[NSDictionary class]]){
+                     
+                     NSLog(@"error jsonObject returned NSDictionary, expecting array, see TVShowManger.m");
+                     
+                 }
+                 else if([jsonObject isKindOfClass:[NSArray class]]){
+                     
+                     //TODO create a type (object) TVshow, and iterate over this array adding these objects to the array used to store data in the app (aka arrayOfDictionaryDetails.)
+                     NSMutableArray *tvShows = [[NSMutableArray alloc] init];
+                     
+                     for (NSDictionary *jsonDictionary in jsonObject) {
+                         TVShow *show = [[TVShow alloc] init];
+                         show.name = jsonDictionary[@"name"];
+                         show.showDescription = jsonDictionary[@"summary"];
+                         show.imageURL = jsonDictionary[@"image"][@"original"];
+                         show.thumbnailURL = jsonDictionary[@"image"][@"medium"];
+                         [tvShows addObject:show];
+                     }
+   
+                     [self.delegate tvShowsFetched:tvShows];
+                 }
+             }
+             else if (error != nil){
+                 NSLog(@"An error happened while deserializing the JSON Data");
+             }
+         }
+         else if ([data length] == 0 && error == nil){
+             NSLog(@"Nothing was downloaded.");
+         }
+         else if (error != nil){
+             NSLog(@"Error hapened = %@", error);
+         }
+     }];
 }
 
 @end

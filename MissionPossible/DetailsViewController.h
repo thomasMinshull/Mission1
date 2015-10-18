@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TVShow.h"
 
 @interface DetailsViewController : UIViewController
+
+@property (strong, nonatomic) TVShow *show;
 
 @end

@@ -9,10 +9,13 @@
 #import "ViewController.h"
 #import "TVShowManager.h"
 #import "TVShow.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "DetailsViewController.h"
 
 @interface ViewController (){
     NSMutableArray *tableViewData;
     TVShowManager *tvShowManager;
+    TVShow *aShow;
 }
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
@@ -23,9 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-//    dataSource = [[NSMutableArray alloc] initWithArray: @[@"first", @"second", @"third"]];
-//
+
     self.tableView.delegate = self;
     tableViewData = [[NSMutableArray alloc] init];
     tvShowManager = [[TVShowManager alloc] init];
@@ -42,11 +43,16 @@
 # pragma -tableView
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    aShow = tableViewData[indexPath.row];
     [self performSegueWithIdentifier:@"detailsSegue" sender:self];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    DetailsViewController *vc = [segue destinationViewController];
+    vc.show = aShow;
+}
 
-# pragma mark -TVShowDelegate 
+# pragma mark -TVShowDelegate
 
 - (void)tvShowsFetched:(NSArray *)tvData{
     for (TVShow *show in tvData) {
@@ -60,31 +66,34 @@
 # pragma mark -datasource 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return [tableViewData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
     if (cell == nil) {
-        
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     TVShow *showToDisplay = tableViewData[indexPath.row];
     
-//    if (showToDisplay == nil) { //TODO check that perameters arn't nil
-//        return nil;
-//    }
-    
-    cell.textLabel.text = showToDisplay.name;
-    NSURL *url = [NSURL URLWithString:showToDisplay.imageURL];
-    //SD Web image cocoa pod.
-    //cell.imageView.image = showToDisplay.imageURL
+    NSLog(@"%@", showToDisplay.thumbnailURL);
+    NSURL *url = [NSURL URLWithString:showToDisplay.thumbnailURL];
+    [cell.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Image"]];
+
+    if (showToDisplay == nil) { //TODO check that perameters arn't nil
+        return nil;
+    }
+    else {
+        if (showToDisplay.name != nil) {
+            cell.textLabel.text = showToDisplay.name;
+        }
+        else {
+            cell.textLabel.text = @"Error, showToDisplay.name = nil";
+        }
+    }
     
     return cell;
 }
