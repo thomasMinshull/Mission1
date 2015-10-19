@@ -3,13 +3,16 @@ PODS:
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
+  - SVPullToRefreshImprove (0.5)
 
 DEPENDENCIES:
   - MBProgressHUD
   - SDWebImage
+  - SVPullToRefreshImprove
 
 SPEC CHECKSUMS:
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SVPullToRefreshImprove: 5b0760edd107d6ef96c7e09c86fe2d67f6c842a5
 
 COCOAPODS: 0.39.0
