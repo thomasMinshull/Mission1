@@ -86,13 +86,8 @@
                          }
                          [tvShows addObject:show];
                      }
-   
-//                     if (page == 0) {
-//                         [self.delegate reloadFirstPage:tvShows];
-//                     }
-//                     else {
+
                         [self.delegate tvShowsFetched:tvShows];
-//                     }
                  }
              }
              else if (error != nil){

@@ -16,7 +16,7 @@
 #import "UIScrollView+SVInfiniteScrolling.h"
 
 @interface ViewController (){
-    NSMutableArray *tableViewData;
+    __block NSMutableArray *tableViewData;
     TVShowManager *tvShowManager;
     TVShow *aShow;
     __block int page;
@@ -78,8 +78,12 @@
 # pragma mark -TVShowDelegate
 
 - (void)tvShowsFetched:(NSArray *)tvData {
+    if (page == 0) {
+        [tableViewData removeAllObjects];
+    }
     for (TVShow *show in tvData) {
         NSLog(@"tv show name= %@", show.name);
+        
         [tableViewData addObject:show];
     }
     [self.tableView reloadData];
@@ -88,19 +92,6 @@
     [self.tableView.pullToRefreshView stopAnimating];
     [self.tableView.infiniteScrollingView stopAnimating];
 }
-
-- (void)fetchNextPage:(NSArray *)tvData{
-//    for (TVShow *show in tvData) {
-//        NSLog(@"tv show name= %@", show.name);
-//        [tableViewData addObject:show];
-//    }
-//    [self.tableView reloadData];
-//    // stop all the animations, clearly not the right place to put this code but it makes it work
-//    [MBProgressHUD hideHUDForView:self.view animated:YES];
-//    [self.tableView.pullToRefreshView stopAnimating];
-//    [self.tableView.infiniteScrollingView stopAnimating];
-}
-
 
 # pragma mark -datasource 
 
