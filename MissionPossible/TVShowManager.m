@@ -26,14 +26,14 @@
      completionHandler:^(NSURLResponse *response,
                          NSData *data,
                          NSError *error) {
-         if ([data length] >0 && error == nil) {
+         if ([data length] > 0 && error == nil) {
              NSLog(@"data retreved in TVShowManager completion block");
              NSError *error = nil;
              
              id jsonObject = [NSJSONSerialization
-                              JSONObjectWithData:data
-                              options:NSJSONReadingAllowFragments
-                              error:&error];
+                              JSONObjectWithData: data
+                              options: NSJSONReadingAllowFragments
+                              error: &error];
              if(jsonObject != nil && error == nil){
                  NSLog(@"sucess JSON Deserialized!");
                  NSLog(@"Deserialized JSON: %@", jsonObject);
@@ -44,8 +44,6 @@
                      
                  }
                  else if([jsonObject isKindOfClass:[NSArray class]]){
-                     
-                     //TODO create a type (object) TVshow, and iterate over this array adding these objects to the array used to store data in the app (aka arrayOfDictionaryDetails.)
                      NSMutableArray *tvShows = [[NSMutableArray alloc] init];
                      
                      for (NSDictionary *jsonDictionary in jsonObject) {
@@ -57,7 +55,12 @@
                          [tvShows addObject:show];
                      }
    
-                     [self.delegate tvShowsFetched:tvShows];
+//                     if (page == 0) {
+//                         [self.delegate reloadFirstPage:tvShows];
+//                     }
+//                     else {
+                        [self.delegate tvShowsFetched:tvShows];
+//                     }
                  }
              }
              else if (error != nil){

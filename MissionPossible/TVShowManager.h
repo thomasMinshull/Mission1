@@ -13,6 +13,7 @@
 @required
 
 - (void)tvShowsFetched:(NSArray *)tvData;
+- (void)reloadFirstPage:(NSArray *)tvData;
 
 @end
 
