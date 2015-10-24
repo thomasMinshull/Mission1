@@ -47,11 +47,43 @@
                      NSMutableArray *tvShows = [[NSMutableArray alloc] init];
                      
                      for (NSDictionary *jsonDictionary in jsonObject) {
+                         //TODO Check if jsonObject null and check to
                          TVShow *show = [[TVShow alloc] init];
-                         show.name = jsonDictionary[@"name"];
-                         show.showDescription = jsonDictionary[@"summary"];
-                         show.imageURL = jsonDictionary[@"image"][@"original"];
-                         show.thumbnailURL = jsonDictionary[@"image"][@"medium"];
+                         NSString *name = jsonDictionary[@"name"];
+                         if (name != (NSString *)[NSNull null]) {
+                             show.name = name;
+                         } else {
+                             show.name = @"";
+                         }
+                         NSString *description = jsonDictionary[@"summary"];
+                         if (description != (NSString *)[NSNull null] && description.length > 0) {
+                             show.showDescription = description;
+                         } else {
+                             show.showDescription = @"";
+                         }
+                         NSDictionary *imageDictionary = jsonDictionary[@"image"];
+                         if (imageDictionary != (NSDictionary *)[NSNull null]) {
+                             if (imageDictionary.allKeys.count > 0) {
+                                 NSString *imageURL = jsonDictionary[@"image"][@"original"];
+                                 if (imageURL != (NSString *)[NSNull null]) {
+                                     show.imageURL = imageURL;
+                                 } else {
+                                     show.imageURL = @"";
+                                 }
+                                 NSString *thumbnailURL = jsonDictionary[@"image"][@"medium"];
+                                 if (thumbnailURL != (NSString *)[NSNull null]) {
+                                     show.thumbnailURL = imageURL;
+                                 } else {
+                                     show.thumbnailURL = @"";
+                                 }
+                             } else {
+                                 show.imageURL = @"";
+                                 show.thumbnailURL = @"";
+                             }
+                         } else {
+                             show.imageURL = @"";
+                             show.thumbnailURL = @"";
+                         }
                          [tvShows addObject:show];
                      }
    

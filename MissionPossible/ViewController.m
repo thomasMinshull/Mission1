@@ -49,14 +49,10 @@
         [tvShowManager fetchTVShowsByPage:page];
     }];
     
-     __unsafe_unretained typeof(self) weakSelf = self;
-  // look at this block probably not right
     [self.tableView addInfiniteScrollingWithActionHandler:^{
-  //      weakSelf->page++;
-        
-//        NSLog(@"InActionHandler, page: %d, /n weakSelf->tvShowManager: %@", page, weakSelf->tvShowManager);
-        [tvShowManager fetchTVShowsByPage:page +1];
-      //  [self.tableView.infiniteScrollingView stopAnimating];
+        page++;
+        [tvShowManager fetchTVShowsByPage:page];
+        [self.tableView.infiniteScrollingView stopAnimating];
     }];
 }
 
@@ -93,17 +89,17 @@
     [self.tableView.infiniteScrollingView stopAnimating];
 }
 
-- (void)reloadFirstPage:(NSArray *)tvData{
-    
-    for (TVShow *show in tvData) {
-        NSLog(@"tv show name= %@", show.name);
-        [tableViewData addObject:show];
-    }
-    [self.tableView reloadData];
-    // stop all the animations, clearly not the right place to put this code but it makes it work
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    [self.tableView.pullToRefreshView stopAnimating];
-    [self.tableView.infiniteScrollingView stopAnimating];}
+- (void)fetchNextPage:(NSArray *)tvData{
+//    for (TVShow *show in tvData) {
+//        NSLog(@"tv show name= %@", show.name);
+//        [tableViewData addObject:show];
+//    }
+//    [self.tableView reloadData];
+//    // stop all the animations, clearly not the right place to put this code but it makes it work
+//    [MBProgressHUD hideHUDForView:self.view animated:YES];
+//    [self.tableView.pullToRefreshView stopAnimating];
+//    [self.tableView.infiniteScrollingView stopAnimating];
+}
 
 
 # pragma mark -datasource 
