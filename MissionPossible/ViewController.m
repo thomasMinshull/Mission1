@@ -7,10 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "TVShowManager.h"
+#import "DetailsViewController.h"
 #import "TVShow.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "DetailsViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "UIScrollView+SVPullToRefresh.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
@@ -38,11 +37,10 @@
     tvShowManager.delegate = self;
     page = 0;
 
-    // this is bad code because I call MBProgressHud showHudAddedTo here but turn it off in the method, but if I put both out side the methode the timing isn't correct because the methode is asynconous, similarly if I put the code all in the methode the timing is off
+    // I call MBProgressHud showHudAddedTo here but turn it off in the "- (void)tvShowsFetched:(NSArray *)tvData" method,
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [tvShowManager fetchTVShowsByPage:page];
     
-    // will this create a possible memory leak because it is a reference cycle? do I need to use weak self?
     // Pull to refresh
     [self.tableView addPullToRefreshWithActionHandler:^{
         page = 0;
@@ -82,12 +80,11 @@
         [tableViewData removeAllObjects];
     }
     for (TVShow *show in tvData) {
-        NSLog(@"tv show name= %@", show.name);
-        
+        //NSLog(@"tv show name= %@", show.name);
         [tableViewData addObject:show];
     }
     [self.tableView reloadData];
-    // stop all the animations, clearly not the right place to put this code but it makes it work
+    // stop all the animations
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self.tableView.pullToRefreshView stopAnimating];
     [self.tableView.infiniteScrollingView stopAnimating];
