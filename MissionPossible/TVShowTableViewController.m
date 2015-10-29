@@ -6,7 +6,7 @@
 //  Copyright © 2015 Tom m. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "TVShowTableViewController.h"
 #import "DetailsViewController.h"
 #import "TVShow.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -14,7 +14,7 @@
 #import "UIScrollView+SVPullToRefresh.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
 
-@interface ViewController (){
+@interface TVShowTableViewController (){
     __block NSMutableArray *tableViewData;
     TVShowManager *tvShowManager;
     TVShow *aShow;
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation ViewController
+@implementation TVShowTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
