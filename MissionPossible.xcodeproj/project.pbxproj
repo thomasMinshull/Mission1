@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		550595161BE19A9200516B81 /* CollectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 550595151BE19A9200516B81 /* CollectionLayout.m */; settings = {ASSET_TAGS = (); }; };
+		550595181BE1AB7D00516B81 /* egg_benedict.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 550595171BE1AB7D00516B81 /* egg_benedict.jpg */; settings = {ASSET_TAGS = (); }; };
+		5505951A1BE1AB8C00516B81 /* angry_birds_cake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 550595191BE1AB8C00516B81 /* angry_birds_cake.jpg */; settings = {ASSET_TAGS = (); }; };
 		5521B6231BD1CEBD00082BD8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521B6221BD1CEBD00082BD8 /* main.m */; };
 		5521B6261BD1CEBD00082BD8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521B6251BD1CEBD00082BD8 /* AppDelegate.m */; };
 		5521B6291BD1CEBD00082BD8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521B6281BD1CEBD00082BD8 /* ViewController.m */; };
@@ -40,6 +43,10 @@
 
 /* Begin PBXFileReference section */
 		3CF2136CE9A55D12F2DE5213 /* libPods-MissionPossible.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MissionPossible.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		550595141BE19A9200516B81 /* CollectionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionLayout.h; sourceTree = "<group>"; };
+		550595151BE19A9200516B81 /* CollectionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionLayout.m; sourceTree = "<group>"; };
+		550595171BE1AB7D00516B81 /* egg_benedict.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = egg_benedict.jpg; sourceTree = "<group>"; };
+		550595191BE1AB8C00516B81 /* angry_birds_cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = angry_birds_cake.jpg; sourceTree = "<group>"; };
 		5521B61E1BD1CEBD00082BD8 /* MissionPossible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MissionPossible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5521B6221BD1CEBD00082BD8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5521B6241BD1CEBD00082BD8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -134,6 +141,8 @@
 		5521B6211BD1CEBD00082BD8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				550595191BE1AB8C00516B81 /* angry_birds_cake.jpg */,
+				550595171BE1AB7D00516B81 /* egg_benedict.jpg */,
 				5521B6221BD1CEBD00082BD8 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -169,6 +178,8 @@
 		55F73CCD1BD3DF4F00A7A4E9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				550595141BE19A9200516B81 /* CollectionLayout.h */,
+				550595151BE19A9200516B81 /* CollectionLayout.m */,
 				5521B6271BD1CEBD00082BD8 /* ViewController.h */,
 				5521B6281BD1CEBD00082BD8 /* ViewController.m */,
 				55F73CC31BD2A94900A7A4E9 /* DetailsViewController.h */,
@@ -312,9 +323,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5505951A1BE1AB8C00516B81 /* angry_birds_cake.jpg in Resources */,
 				5521B6311BD1CEBD00082BD8 /* LaunchScreen.storyboard in Resources */,
 				5521B62E1BD1CEBD00082BD8 /* Assets.xcassets in Resources */,
 				5521B62C1BD1CEBD00082BD8 /* Main.storyboard in Resources */,
+				550595181BE1AB7D00516B81 /* egg_benedict.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55F73CCB1BD2B97800A7A4E9 /* TVShowManager.m in Sources */,
+				550595161BE19A9200516B81 /* CollectionLayout.m in Sources */,
 				5521B6291BD1CEBD00082BD8 /* ViewController.m in Sources */,
 				5521B6261BD1CEBD00082BD8 /* AppDelegate.m in Sources */,
 				5521B6231BD1CEBD00082BD8 /* main.m in Sources */,
