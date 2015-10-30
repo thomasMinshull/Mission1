@@ -23,5 +23,6 @@
 @property (nonatomic, strong) id delegate;
 
 - (void)fetchTVShowsByPage:(int)page;
+- (void)fetchTVShowsByPage:(int)page withCompletion: (void(^)(NSArray *))quebecois; // ;P
 
 @end
