@@ -15,8 +15,6 @@
     //NSLog(@"fetchTVShowxByPage called");
     
     NSString *urlAsString = [[@"http://api.tvmaze.com/shows/" stringByAppendingString: [NSString stringWithFormat:@"%i",page + 1]] stringByAppendingString: @"/episodes"];
-    
-    // Fetch from the API
     NSURL *url = [NSURL URLWithString:urlAsString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -29,7 +27,6 @@
          if ([data length] > 0 && error == nil) {
              NSLog(@"data retreved in TVShowManager completion block");
              NSError *error = nil;
-             
              id jsonObject = [NSJSONSerialization
                               JSONObjectWithData: data
                               options: NSJSONReadingAllowFragments
@@ -43,50 +40,10 @@
   
                  }
                  else if([jsonObject isKindOfClass:[NSArray class]]){
-                     NSMutableArray *tvShows = [[NSMutableArray alloc] init];
-                     
-                     // checks for clean data
-                     for (NSDictionary *jsonDictionary in jsonObject) {
-                         TVShow *show = [[TVShow alloc] init];
-                         NSString *name = jsonDictionary[@"name"];
-                         if (name != (NSString *)[NSNull null]) {
-                             show.name = name;
-                         } else {
-                             show.name = @"";
-                         }
-                         NSString *description = jsonDictionary[@"summary"];
-                         if (description != (NSString *)[NSNull null] && description.length > 0) {
-                             show.showDescription = description;
-                         } else {
-                             show.showDescription = @"";
-                         }
-                         NSDictionary *imageDictionary = jsonDictionary[@"image"];
-                         if (imageDictionary != (NSDictionary *)[NSNull null]) {
-                             if (imageDictionary.allKeys.count > 0) {
-                                 NSString *imageURL = jsonDictionary[@"image"][@"original"];
-                                 if (imageURL != (NSString *)[NSNull null]) {
-                                     show.imageURL = imageURL;
-                                 } else {
-                                     show.imageURL = @"";
-                                 }
-                                 NSString *thumbnailURL = jsonDictionary[@"image"][@"medium"];
-                                 if (thumbnailURL != (NSString *)[NSNull null]) {
-                                     show.thumbnailURL = imageURL;
-                                 } else {
-                                     show.thumbnailURL = @"";
-                                 }
-                             } else {
-                                 show.imageURL = @"";
-                                 show.thumbnailURL = @"";
-                             }
-                         } else {
-                             show.imageURL = @"";
-                             show.thumbnailURL = @"";
-                         }
-                         [tvShows addObject:show];
-                     }
-                     
-                        [self.delegate tvShowsFetched:tvShows];
+                     dispatch_queue_t cleanDataQueue = dispatch_queue_create("jsonSerializeationQueue", NULL);
+                     dispatch_async(cleanDataQueue, ^{
+                         [self.delegate tvShowsFetched:[self cleanSerializedJsonObject:jsonObject]];
+                     });
                  }
              } else if (error != nil){
                  NSLog(@"An error happened while deserializing the JSON Data");
@@ -101,7 +58,7 @@
      }];
 }
 
-- (void)fetchTVShowsByPage:(int)page withCompletion: (void(^)())quebecois {
+- (void)fetchTVShowsByPage:(int)page withCompletion: (void(^)(NSArray *)) quebecois {
     NSString *urlAsString = [[@"http://api.tvmaze.com/shows/" stringByAppendingString: [NSString stringWithFormat:@"%i",page + 1]] stringByAppendingString: @"/episodes"];
     
     // Fetch from the API
@@ -122,67 +79,20 @@
                               JSONObjectWithData: data
                               options: NSJSONReadingAllowFragments
                               error: &error];
+             
              if(jsonObject != nil && error == nil){
-                 NSLog(@"sucess JSON Deserialized!");
-                 NSLog(@"Deserialized JSON: %@", jsonObject);
-                 
                  if([jsonObject isKindOfClass:[NSDictionary class]]){
                      NSLog(@"error jsonObject returned NSDictionary, expecting array, see TVShowManger.m");
-                     
                  }
                  else if([jsonObject isKindOfClass:[NSArray class]]){
-                     NSMutableArray *tvShows = [[NSMutableArray alloc] init];
-                     
-                     // checks for clean data
-                     for (NSDictionary *jsonDictionary in jsonObject) {
-                         TVShow *show = [[TVShow alloc] init];
-                         NSString *name = jsonDictionary[@"name"];
-                         if (name != (NSString *)[NSNull null]) {
-                             show.name = name;
-                         } else {
-                             show.name = @"";
-                         }
-                         NSString *description = jsonDictionary[@"summary"];
-                         if (description != (NSString *)[NSNull null] && description.length > 0) {
-                             show.showDescription = description;
-                         } else {
-                             show.showDescription = @"";
-                         }
-                         NSDictionary *imageDictionary = jsonDictionary[@"image"];
-                         if (imageDictionary != (NSDictionary *)[NSNull null]) {
-                             if (imageDictionary.allKeys.count > 0) {
-                                 NSString *imageURL = jsonDictionary[@"image"][@"original"];
-                                 if (imageURL != (NSString *)[NSNull null]) {
-                                     show.imageURL = imageURL;
-                                 } else {
-                                     show.imageURL = @"";
-                                 }
-                                 NSString *thumbnailURL = jsonDictionary[@"image"][@"medium"];
-                                 if (thumbnailURL != (NSString *)[NSNull null]) {
-                                     show.thumbnailURL = imageURL;
-                                 } else {
-                                     show.thumbnailURL = @"";
-                                 }
-                             } else {
-                                 show.imageURL = @"";
-                                 show.thumbnailURL = @"";
-                             }
-                         } else {
-                             show.imageURL = @"";
-                             show.thumbnailURL = @"";
-                         }
-                         [tvShows addObject:show];
-                     }
-                     //This line needs to change exicute block
-                     //[self.delegate tvShowsFetched:tvShows];
-                     
-                     quebecois(tvShows);
+                     dispatch_queue_t cleanDataQueue = dispatch_queue_create("jsonSerializeationQueue", NULL);
+                     dispatch_async(cleanDataQueue, ^{
+                        quebecois([self cleanSerializedJsonObject: jsonObject]);
+                     });
                  }
              } else if (error != nil){
                  NSLog(@"An error happened while deserializing the JSON Data");
-                 
              }
-             
          } else if ([data length] == 0 && error == nil){
              NSLog(@"Nothing was downloaded.");
          } else if (error != nil){
@@ -191,4 +101,49 @@
      }];
 }
 
+-(NSMutableArray *)cleanSerializedJsonObject: (NSObject *) jsonObject {
+    NSMutableArray *tvShows = [[NSMutableArray alloc] init];
+    
+    // checks for clean data
+    for (NSDictionary *jsonDictionary in jsonObject) {
+        TVShow *show = [[TVShow alloc] init];
+        NSString *name = jsonDictionary[@"name"];
+        if (name != (NSString *)[NSNull null]) {
+            show.name = name;
+        } else {
+            show.name = @"";
+        }
+        NSString *description = jsonDictionary[@"summary"];
+        if (description != (NSString *)[NSNull null] && description.length > 0) {
+            show.showDescription = description;
+        } else {
+            show.showDescription = @"";
+        }
+        NSDictionary *imageDictionary = jsonDictionary[@"image"];
+        if (imageDictionary != (NSDictionary *)[NSNull null]) {
+            if (imageDictionary.allKeys.count > 0) {
+                NSString *imageURL = jsonDictionary[@"image"][@"original"];
+                if (imageURL != (NSString *)[NSNull null]) {
+                    show.imageURL = imageURL;
+                } else {
+                    show.imageURL = @"";
+                }
+                NSString *thumbnailURL = jsonDictionary[@"image"][@"medium"];
+                if (thumbnailURL != (NSString *)[NSNull null]) {
+                    show.thumbnailURL = imageURL;
+                } else {
+                    show.thumbnailURL = @"";
+                }
+            } else {
+                show.imageURL = @"";
+                show.thumbnailURL = @"";
+            }
+        } else {
+            show.imageURL = @"";
+            show.thumbnailURL = @"";
+        }
+        [tvShows addObject:show];
+    }
+    return tvShows;
+}
 @end

@@ -24,5 +24,5 @@
 
 - (void)fetchTVShowsByPage:(int)page;
 - (void)fetchTVShowsByPage:(int)page withCompletion: (void(^)(NSArray *))quebecois; // ;P
-
+- (NSMutableArray *)cleanSerializedJsonObject: (NSObject *) jsonObject;
 @end
