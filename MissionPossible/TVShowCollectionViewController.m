@@ -23,63 +23,30 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.collectionView.delegate = self;
+
     collectionViewData = [[NSMutableArray alloc] init];
     tvShowManagerCollectionView = [[TVShowManager alloc] init];
     page = 0;
     
     // I call MBProgressHud showHudAddedTo here but turn it off in the "- (void)tvShowsFetched:(NSArray *)tvData" method,
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //initial data fetch
     [tvShowManagerCollectionView fetchTVShowsByPage: page withCompletion:^(NSArray *tvData) {
-        if (page == 0) {
-            [collectionViewData removeAllObjects];
-        }
-        for (TVShow *show in tvData) {
-            //NSLog(@"tv show name= %@", show.name);
-            [collectionViewData addObject:show];
-        }
-        [self.collectionView reloadData];
-        // stop all the animations
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [self.collectionView.pullToRefreshView stopAnimating];
-        [self.collectionView.infiniteScrollingView stopAnimating];
+    [self upDataWithNSArray: tvData];
     }];
     
     // Pull to refresh
     [self.collectionView addPullToRefreshWithActionHandler:^{
         page = 0;
         [tvShowManagerCollectionView fetchTVShowsByPage: page withCompletion:^(NSArray *tvData) {
-            if (page == 0) {
-                [collectionViewData removeAllObjects];
-            }
-            for (TVShow *show in tvData) {
-                //NSLog(@"tv show name= %@", show.name);
-                [collectionViewData addObject:show];
-            }
-            [self.collectionView reloadData];
-            // stop all the animations
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self.collectionView.pullToRefreshView stopAnimating];
-            [self.collectionView.infiniteScrollingView stopAnimating];
+        [self upDataWithNSArray: tvData];
         }];
     }];
-    
+    // infinate scroll
     [self.collectionView addInfiniteScrollingWithActionHandler:^{
         page++;
         [tvShowManagerCollectionView fetchTVShowsByPage: page withCompletion:^(NSArray *tvData) {
-            if (page == 0) {
-                [collectionViewData removeAllObjects];
-            }
-            for (TVShow *show in tvData) {
-                //NSLog(@"tv show name= %@", show.name);
-                [collectionViewData addObject:show];
-            }
-            [self.collectionView reloadData];
-            // stop all the animations
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self.collectionView.pullToRefreshView stopAnimating];
-            [self.collectionView.infiniteScrollingView stopAnimating];
+        [self upDataWithNSArray: tvData];
         }];
     }];
     
@@ -102,21 +69,11 @@
     vc.show = aShow;
 }
 
+
 #pragma mark -TVShowDelegate
 
 - (void)tvShowsFetched:(NSArray *)tvData {
-    if (page == 0) {
-        [collectionViewData removeAllObjects];
-    }
-    for (TVShow *show in tvData) {
-        //NSLog(@"tv show name= %@", show.name);
-        [collectionViewData addObject:show];
-    }
-    [self.collectionView reloadData];
-    // stop all the animations
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    [self.collectionView.pullToRefreshView stopAnimating];
-    [self.collectionView.infiniteScrollingView stopAnimating];
+    [self upDataWithNSArray: tvData];
 }
 
 
@@ -125,7 +82,6 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return collectionViewData.count;
 }
-
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier = @"cell";
@@ -138,6 +94,21 @@
     [cellImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Image"]];
     
     return cell;
+}
+
+- (void)upDataWithNSArray:(NSArray *)tvData {
+    if (page == 0) {
+        [collectionViewData removeAllObjects];
+    }
+    for (TVShow *show in tvData) {
+        //NSLog(@"tv show name= %@", show.name);
+        [collectionViewData addObject:show];
+    }
+    [self.collectionView reloadData];
+    // stop all the animations
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self.collectionView.pullToRefreshView stopAnimating];
+    [self.collectionView.infiniteScrollingView stopAnimating];
 }
 
 @end

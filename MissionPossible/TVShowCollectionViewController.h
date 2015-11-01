@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "TVShowManager.h"
 
-@interface TVShowCollectionViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate> {
-    NSArray *photosForSetup;
-}
+@interface TVShowCollectionViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+
+- (void)upDataWithNSArray: (NSArray *)tvData;
 
 @end
