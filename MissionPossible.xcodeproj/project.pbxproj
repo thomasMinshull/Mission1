@@ -10,7 +10,7 @@
 		550595161BE19A9200516B81 /* TVShowCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550595151BE19A9200516B81 /* TVShowCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5521B6231BD1CEBD00082BD8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521B6221BD1CEBD00082BD8 /* main.m */; };
 		5521B6261BD1CEBD00082BD8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521B6251BD1CEBD00082BD8 /* AppDelegate.m */; };
-		5521B6291BD1CEBD00082BD8 /* TVShowTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521B6281BD1CEBD00082BD8 /* TVShowTableViewController.m */; };
+		5521B6291BD1CEBD00082BD8 /* TVShowViewControllerWithTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521B6281BD1CEBD00082BD8 /* TVShowViewControllerWithTableView.m */; };
 		5521B62C1BD1CEBD00082BD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5521B62A1BD1CEBD00082BD8 /* Main.storyboard */; };
 		5521B62E1BD1CEBD00082BD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5521B62D1BD1CEBD00082BD8 /* Assets.xcassets */; };
 		5521B6311BD1CEBD00082BD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5521B62F1BD1CEBD00082BD8 /* LaunchScreen.storyboard */; };
@@ -47,8 +47,8 @@
 		5521B6221BD1CEBD00082BD8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5521B6241BD1CEBD00082BD8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5521B6251BD1CEBD00082BD8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5521B6271BD1CEBD00082BD8 /* TVShowTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVShowTableViewController.h; sourceTree = "<group>"; };
-		5521B6281BD1CEBD00082BD8 /* TVShowTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVShowTableViewController.m; sourceTree = "<group>"; };
+		5521B6271BD1CEBD00082BD8 /* TVShowViewControllerWithTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVShowViewControllerWithTableView.h; sourceTree = "<group>"; };
+		5521B6281BD1CEBD00082BD8 /* TVShowViewControllerWithTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVShowViewControllerWithTableView.m; sourceTree = "<group>"; };
 		5521B62B1BD1CEBD00082BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5521B62D1BD1CEBD00082BD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5521B6301BD1CEBD00082BD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -174,8 +174,8 @@
 			children = (
 				550595141BE19A9200516B81 /* TVShowCollectionViewController.h */,
 				550595151BE19A9200516B81 /* TVShowCollectionViewController.m */,
-				5521B6271BD1CEBD00082BD8 /* TVShowTableViewController.h */,
-				5521B6281BD1CEBD00082BD8 /* TVShowTableViewController.m */,
+				5521B6271BD1CEBD00082BD8 /* TVShowViewControllerWithTableView.h */,
+				5521B6281BD1CEBD00082BD8 /* TVShowViewControllerWithTableView.m */,
 				55F73CC31BD2A94900A7A4E9 /* DetailsViewController.h */,
 				55F73CC41BD2A94900A7A4E9 /* DetailsViewController.m */,
 			);
@@ -393,7 +393,7 @@
 			files = (
 				55F73CCB1BD2B97800A7A4E9 /* TVShowManager.m in Sources */,
 				550595161BE19A9200516B81 /* TVShowCollectionViewController.m in Sources */,
-				5521B6291BD1CEBD00082BD8 /* TVShowTableViewController.m in Sources */,
+				5521B6291BD1CEBD00082BD8 /* TVShowViewControllerWithTableView.m in Sources */,
 				5521B6261BD1CEBD00082BD8 /* AppDelegate.m in Sources */,
 				5521B6231BD1CEBD00082BD8 /* main.m in Sources */,
 				55F73CC51BD2A94900A7A4E9 /* DetailsViewController.m in Sources */,

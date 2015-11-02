@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oF7-0b-ifG">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Show Table View Controller-->
+        <!--Show View Controller With Table View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TVShowTableViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TVShowViewControllerWithTableView" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -112,7 +113,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="showDiscription" destination="Ndf-F1-QP7" id="ZhQ-0s-jwu"/>
+                        <outlet property="showDescriptionTextView" destination="Ndf-F1-QP7" id="hL9-zu-6Yc"/>
                         <outlet property="showImage" destination="XeG-Qx-4qg" id="iJI-Ub-gCo"/>
                         <outlet property="showName" destination="1zA-BC-oYk" id="jVO-KA-0hd"/>
                     </connections>
@@ -183,30 +184,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yRA-qN-dr4">
-                            <size key="itemSize" width="200" height="200"/>
+                            <size key="itemSize" width="150" height="120"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="7af-C3-rTQ">
-                                <rect key="frame" x="0.0" y="64" width="200" height="200"/>
+                                <rect key="frame" x="0.0" y="64" width="125" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="125" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="xvD-ci-Z95">
-                                            <rect key="frame" x="6" y="4" width="189" height="192"/>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="xvD-ci-Z95">
+                                            <rect key="frame" x="6" y="4" width="150" height="150"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="40B-ON-8iF"/>
+                                            </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ym6-SC-tSa">
+                                            <rect key="frame" x="41" y="71" width="150" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="sbf-nP-hRn"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="xvD-ci-Z95" firstAttribute="height" secondItem="7af-C3-rTQ" secondAttribute="height" id="HYB-1l-Rrr"/>
-                                    <constraint firstItem="xvD-ci-Z95" firstAttribute="width" secondItem="7af-C3-rTQ" secondAttribute="width" id="y1p-p8-gdJ"/>
+                                    <constraint firstItem="Ym6-SC-tSa" firstAttribute="centerX" secondItem="xvD-ci-Z95" secondAttribute="centerX" id="69r-IB-Vb0"/>
+                                    <constraint firstItem="Ym6-SC-tSa" firstAttribute="centerY" secondItem="xvD-ci-Z95" secondAttribute="centerY" id="6Z0-6z-bZd"/>
+                                    <constraint firstItem="xvD-ci-Z95" firstAttribute="centerY" secondItem="7af-C3-rTQ" secondAttribute="centerY" id="OOg-Ga-Cte"/>
+                                    <constraint firstItem="xvD-ci-Z95" firstAttribute="centerX" secondItem="7af-C3-rTQ" secondAttribute="centerX" id="v0x-oH-TID"/>
                                 </constraints>
-                                <size key="customSize" width="200" height="200"/>
+                                <size key="customSize" width="125" height="100"/>
                             </collectionViewCell>
                         </cells>
                         <connections>

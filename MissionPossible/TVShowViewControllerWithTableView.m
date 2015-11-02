@@ -6,7 +6,7 @@
 //  Copyright © 2015 Tom m. All rights reserved.
 //
 
-#import "TVShowTableViewController.h"
+#import "TVShowViewControllerWithTableView.h"
 #import "DetailsViewController.h"
 #import "TVShow.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -14,18 +14,17 @@
 #import "UIScrollView+SVPullToRefresh.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
 
-@interface TVShowTableViewController (){
+@interface TVShowViewControllerWithTableView (){
     __block NSMutableArray *tableViewData;
     TVShowManager *tvShowManager;
     TVShow *aShow;
     __block int page;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-//@property (strong, nonatomic) TVShowManager *tvShowManager;
 
 @end
 
-@implementation TVShowTableViewController
+@implementation TVShowViewControllerWithTableView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,7 +37,9 @@
     page = 0;
 
     // I call MBProgressHud showHudAddedTo here but turn it off in the "- (void)tvShowsFetched:(NSArray *)tvData" method,
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSString *loadingMessage = @"Loading Data";
+    hud.labelText = loadingMessage;
     [tvShowManager fetchTVShowsByPage:page];
     
     // Pull to refresh
@@ -61,26 +62,57 @@
 }
 
 
-# pragma -tableView
+# pragma mark -tableView
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     aShow = tableViewData[indexPath.row];
     [self performSegueWithIdentifier:@"detailsSegue" sender:self];
 }
 
+# pragma mark -segue
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     DetailsViewController *vc = [segue destinationViewController];
     vc.show = aShow;
 }
 
-# pragma mark -TVShowDelegate
 
+# pragma mark -datasource 
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [tableViewData count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    
+    TVShow *showToDisplay = tableViewData[indexPath.row];
+    
+    NSURL *url = [NSURL URLWithString:showToDisplay.thumbnailURL];
+    [cell.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Image"]];
+
+    if (showToDisplay == nil) { //TODO check that perameters arn't nil
+        return nil;
+    } else {
+        if (showToDisplay.name != nil) {
+            cell.textLabel.text = showToDisplay.name;
+        } else {
+            cell.textLabel.text = @"Error, showToDisplay.name = nil";
+        }
+    }
+    return cell;
+}
+
+
+# pragma mark -Custom Methods
 - (void)tvShowsFetched:(NSArray *)tvData {
     if (page == 0) {
         [tableViewData removeAllObjects];
     }
     for (TVShow *show in tvData) {
-        //NSLog(@"tv show name= %@", show.name);
         [tableViewData addObject:show];
     }
     [self.tableView reloadData];
@@ -90,39 +122,5 @@
     [self.tableView.infiniteScrollingView stopAnimating];
 }
 
-# pragma mark -datasource 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [tableViewData count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
-    
-    TVShow *showToDisplay = tableViewData[indexPath.row];
-    
-    NSLog(@"%@", showToDisplay.thumbnailURL);
-    NSURL *url = [NSURL URLWithString:showToDisplay.thumbnailURL];
-    [cell.imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Image"]];
-
-    if (showToDisplay == nil) { //TODO check that perameters arn't nil
-        return nil;
-    }
-    else {
-        if (showToDisplay.name != nil) {
-            cell.textLabel.text = showToDisplay.name;
-        }
-        else {
-            cell.textLabel.text = @"Error, showToDisplay.name = nil";
-        }
-    }
-    
-    return cell;
-}
 
 @end

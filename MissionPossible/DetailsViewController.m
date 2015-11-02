@@ -13,10 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *showName;
 @property (strong, nonatomic) IBOutlet UIImageView *showImage;
-@property (strong, nonatomic) IBOutlet UITextView *showDiscription;
-
-- (NSString *)cleanedString:(NSString *)dirtyString;
-
+@property (strong, nonatomic) IBOutlet UITextView *showDescriptionTextView;
 
 @end
 
@@ -25,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.showName.text = _show.name;
-    self.showDiscription.text = [self cleanedString: self.show.showDescription];
+    self.showDescriptionTextView.text = [self cleanedString: self.show.showDescription];
     NSURL *url = [NSURL URLWithString:self.show.thumbnailURL];
     [self.showImage sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Meow"]];
     

@@ -10,8 +10,6 @@
 #import "TVShowManager.h"
 
 
-@interface TVShowTableViewController : UIViewController <TVShowManagerDelegate ,UITableViewDataSource, UITableViewDelegate>
-
-
+@interface TVShowViewControllerWithTableView : UIViewController <TVShowManagerDelegate ,UITableViewDataSource, UITableViewDelegate>
 @end
 

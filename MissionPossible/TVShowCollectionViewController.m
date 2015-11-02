@@ -49,19 +49,11 @@
         [self upDataWithNSArray: tvData];
         }];
     }];
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-# pragma mark -collectionView
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    aShow = collectionViewData[indexPath.row];
-    [self performSegueWithIdentifier:@"detailsSegue2" sender:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -74,6 +66,11 @@
 
 - (void)tvShowsFetched:(NSArray *)tvData {
     [self upDataWithNSArray: tvData];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    aShow = collectionViewData[indexPath.row];
+    [self performSegueWithIdentifier:@"detailsSegue2" sender:nil];
 }
 
 
@@ -92,9 +89,14 @@
     NSURL *url = [NSURL URLWithString:showToDisplay.thumbnailURL];
     UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];
     [cellImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Image"]];
-    
+    UILabel *cellLabel = (UILabel *)[cell viewWithTag:101];
+    [cellLabel setText:showToDisplay.name];
     return cell;
 }
+
+
+# pragma mark -custom methods
+
 
 - (void)upDataWithNSArray:(NSArray *)tvData {
     if (page == 0) {
