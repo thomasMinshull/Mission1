@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		550595161BE19A9200516B81 /* TVShowCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550595151BE19A9200516B81 /* TVShowCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
+		550595161BE19A9200516B81 /* TVShowCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 550595151BE19A9200516B81 /* TVShowCollectionViewController.m */; };
 		5521B6231BD1CEBD00082BD8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521B6221BD1CEBD00082BD8 /* main.m */; };
 		5521B6261BD1CEBD00082BD8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521B6251BD1CEBD00082BD8 /* AppDelegate.m */; };
 		5521B6291BD1CEBD00082BD8 /* TVShowViewControllerWithTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521B6281BD1CEBD00082BD8 /* TVShowViewControllerWithTableView.m */; };
@@ -16,9 +16,10 @@
 		5521B6311BD1CEBD00082BD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5521B62F1BD1CEBD00082BD8 /* LaunchScreen.storyboard */; };
 		5521B63C1BD1CEBD00082BD8 /* MissionPossibleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521B63B1BD1CEBD00082BD8 /* MissionPossibleTests.m */; };
 		5521B6471BD1CEBD00082BD8 /* MissionPossibleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5521B6461BD1CEBD00082BD8 /* MissionPossibleUITests.m */; };
-		55F73CC51BD2A94900A7A4E9 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F73CC41BD2A94900A7A4E9 /* DetailsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		55F73CC81BD2B7F000A7A4E9 /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F73CC71BD2B7F000A7A4E9 /* TVShow.m */; settings = {ASSET_TAGS = (); }; };
-		55F73CCB1BD2B97800A7A4E9 /* TVShowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F73CCA1BD2B97800A7A4E9 /* TVShowManager.m */; settings = {ASSET_TAGS = (); }; };
+		55F73CC51BD2A94900A7A4E9 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F73CC41BD2A94900A7A4E9 /* DetailsViewController.m */; };
+		55F73CC81BD2B7F000A7A4E9 /* TVShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F73CC71BD2B7F000A7A4E9 /* TVShow.m */; };
+		55F73CCB1BD2B97800A7A4E9 /* TVShowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F73CCA1BD2B97800A7A4E9 /* TVShowManager.m */; };
+		55FACC321C11241600E841CB /* MovieCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55FACC311C11241600E841CB /* MovieCollectionViewCell.m */; };
 		8884810B7C524D161B6E2810 /* libPods-MissionPossible.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF2136CE9A55D12F2DE5213 /* libPods-MissionPossible.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,8 @@
 		55F73CC71BD2B7F000A7A4E9 /* TVShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShow.m; sourceTree = "<group>"; };
 		55F73CC91BD2B97800A7A4E9 /* TVShowManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVShowManager.h; sourceTree = "<group>"; };
 		55F73CCA1BD2B97800A7A4E9 /* TVShowManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVShowManager.m; sourceTree = "<group>"; };
+		55FACC301C11241600E841CB /* MovieCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCollectionViewCell.h; sourceTree = "<group>"; };
+		55FACC311C11241600E841CB /* MovieCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionViewCell.m; sourceTree = "<group>"; };
 		B0A1A99E7651851750A780E5 /* Pods-MissionPossible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionPossible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MissionPossible/Pods-MissionPossible.debug.xcconfig"; sourceTree = "<group>"; };
 		CB8D3C7C5AA61D886EAE150C /* Pods-MissionPossible.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MissionPossible.release.xcconfig"; path = "Pods/Target Support Files/Pods-MissionPossible/Pods-MissionPossible.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				5521B6241BD1CEBD00082BD8 /* AppDelegate.h */,
+				55FACC301C11241600E841CB /* MovieCollectionViewCell.h */,
+				55FACC311C11241600E841CB /* MovieCollectionViewCell.m */,
 				5521B6251BD1CEBD00082BD8 /* AppDelegate.m */,
 				55F73CCD1BD3DF4F00A7A4E9 /* ViewControllers */,
 				5521B62A1BD1CEBD00082BD8 /* Main.storyboard */,
@@ -394,6 +399,7 @@
 				55F73CCB1BD2B97800A7A4E9 /* TVShowManager.m in Sources */,
 				550595161BE19A9200516B81 /* TVShowCollectionViewController.m in Sources */,
 				5521B6291BD1CEBD00082BD8 /* TVShowViewControllerWithTableView.m in Sources */,
+				55FACC321C11241600E841CB /* MovieCollectionViewCell.m in Sources */,
 				5521B6261BD1CEBD00082BD8 /* AppDelegate.m in Sources */,
 				5521B6231BD1CEBD00082BD8 /* main.m in Sources */,
 				55F73CC51BD2A94900A7A4E9 /* DetailsViewController.m in Sources */,

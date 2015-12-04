@@ -13,6 +13,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "UIScrollView+SVPullToRefresh.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
+#import "MovieCollectionViewCell.h"
 
 @implementation TVShowCollectionViewController {
     __block NSMutableArray *collectionViewData;
@@ -81,16 +82,15 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     static NSString *identifier = @"cell";
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     TVShow *showToDisplay = collectionViewData[indexPath.row];
-    NSURL *url = [NSURL URLWithString:showToDisplay.thumbnailURL];
-    UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];
-    [cellImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Image"]];
-    UILabel *cellLabel = (UILabel *)[cell viewWithTag:101];
-    [cellLabel setText:showToDisplay.name];
+    cell.show = showToDisplay;
+    [cell setCellSubviews];
+
     return cell;
 }
 
