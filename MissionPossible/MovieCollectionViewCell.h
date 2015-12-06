@@ -11,7 +11,5 @@
 
 @interface MovieCollectionViewCell : UICollectionViewCell
 @property (strong, nonatomic) TVShow *show;
-@property (strong, nonatomic) UILabel *label;
 
--(void)setCellSubviews;
 @end

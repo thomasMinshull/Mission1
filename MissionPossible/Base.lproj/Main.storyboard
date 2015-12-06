@@ -197,15 +197,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="175"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="xvD-ci-Z95">
-                                            <rect key="frame" x="4" y="4" width="150" height="150"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="40B-ON-8iF"/>
-                                                <constraint firstAttribute="width" constant="150" id="S4R-dh-OIz"/>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="gJ9-2J-Snn"/>
-                                                <constraint firstAttribute="height" constant="150" id="gvE-Yr-q2q"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ym6-SC-tSa">
                                             <rect key="frame" x="8" y="155" width="142" height="21"/>
                                             <constraints>
@@ -215,6 +206,15 @@
                                             <color key="textColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="xvD-ci-Z95">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="40B-ON-8iF"/>
+                                                <constraint firstAttribute="width" constant="150" id="S4R-dh-OIz"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="gJ9-2J-Snn"/>
+                                                <constraint firstAttribute="height" constant="150" id="gvE-Yr-q2q"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -226,6 +226,10 @@
                                     <constraint firstAttribute="leadingMargin" secondItem="Ym6-SC-tSa" secondAttribute="leading" id="sUm-8A-Yj2"/>
                                 </constraints>
                                 <size key="customSize" width="150" height="175"/>
+                                <connections>
+                                    <outlet property="movieImage" destination="xvD-ci-Z95" id="N7g-EX-CqI"/>
+                                    <outlet property="movieLabel" destination="Ym6-SC-tSa" id="Hdv-nU-udU"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

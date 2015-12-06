@@ -9,15 +9,21 @@
 #import "MovieCollectionViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+@interface MovieCollectionViewCell ()
+@property (strong, nonatomic) IBOutlet UIImageView *movieImage;
+@property (strong, nonatomic) IBOutlet UILabel *movieLabel;
+@end
+
 @implementation MovieCollectionViewCell
 
--(void)setCellSubviews {
-    NSURL *url = [NSURL URLWithString:self.show.thumbnailURL];
-    UIImageView *cellImageView = (UIImageView *)[self viewWithTag:100];
-    [cellImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Image"]];
-    self.backgroundView = cellImageView;
-    self.label = (UILabel *)[self viewWithTag:101];
-    [self.label setText:self.show.name];
-
+-(void)setShow:(TVShow *)show {
+    if (show != nil) {
+        _show = show;
+        NSURL *url = [NSURL URLWithString:self.show.thumbnailURL];
+        [self.movieImage sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Image"]];
+        [self.movieLabel setText:self.show.name];
+    }
 }
+
+
 @end

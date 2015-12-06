@@ -23,6 +23,6 @@
 @property (nonatomic, strong) id delegate;
 
 - (void)fetchTVShowsByPage:(int)page;
-- (void)fetchTVShowsByPage:(int)page withCompletion: (void(^)(NSArray *))quebecois; // ;P
+- (void)fetchTVShowsByPage:(int)page withCompletion: (void(^)(NSArray *))quebecois; 
 - (NSMutableArray *)cleanSerializedJsonObject: (NSObject *) jsonObject;
 @end

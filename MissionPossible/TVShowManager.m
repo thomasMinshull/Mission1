@@ -17,10 +17,10 @@
     NSString *urlAsString = [[@"http://api.tvmaze.com/shows/" stringByAppendingString: [NSString stringWithFormat:@"%i",page + 1]] stringByAppendingString: @"/episodes"];
     NSURL *url = [NSURL URLWithString:urlAsString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    NSOperationQueue *BackgroundQueue = [[NSOperationQueue alloc] init];
     [NSURLConnection
      sendAsynchronousRequest: urlRequest
-     queue:queue
+     queue:BackgroundQueue
      completionHandler:^(NSURLResponse *response,
                          NSData *data,
                          NSError *error) {
@@ -40,9 +40,10 @@
   
                  }
                  else if([jsonObject isKindOfClass:[NSArray class]]){
-                     dispatch_queue_t cleanDataQueue = dispatch_queue_create("jsonSerializeationQueue", NULL);
-                     dispatch_async(cleanDataQueue, ^{
-                         [self.delegate tvShowsFetched:[self cleanSerializedJsonObject:jsonObject]];
+                     NSMutableArray *deserializedArray = [self cleanSerializedJsonObject:jsonObject];
+                     
+                     dispatch_async(dispatch_get_main_queue(), ^(void){
+                         [self.delegate tvShowsFetched:deserializedArray];
                      });
                  }
              } else if (error != nil){
@@ -85,10 +86,12 @@
                      NSLog(@"error jsonObject returned NSDictionary, expecting array, see TVShowManger.m");
                  }
                  else if([jsonObject isKindOfClass:[NSArray class]]){
-                     dispatch_queue_t cleanDataQueue = dispatch_queue_create("jsonSerializeationQueue", NULL);
-                     dispatch_async(cleanDataQueue, ^{
-                        quebecois([self cleanSerializedJsonObject: jsonObject]);
+                     NSMutableArray *deserializedArray = [self cleanSerializedJsonObject:jsonObject];
+                     
+                     dispatch_async(dispatch_get_main_queue(), ^(void){
+                         quebecois(deserializedArray);
                      });
+                 
                  }
              } else if (error != nil){
                  NSLog(@"An error happened while deserializing the JSON Data");

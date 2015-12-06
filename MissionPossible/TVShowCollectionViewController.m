@@ -82,15 +82,11 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
     static NSString *identifier = @"cell";
-    
     MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-    TVShow *showToDisplay = collectionViewData[indexPath.row];
-    cell.show = showToDisplay;
-    [cell setCellSubviews];
-
+    TVShow *showToDisplay = (TVShow *)collectionViewData[indexPath.row];
+    [cell setShow:showToDisplay];
     return cell;
 }
 
