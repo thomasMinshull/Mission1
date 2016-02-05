@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol TVShowManagerDelegate <NSObject>
+@protocol TVShowManagerProtocol <NSObject>
 
 @required
 
@@ -17,7 +17,7 @@
 @end
 
 @interface TVShowManager : NSObject {
-    id <TVShowManagerDelegate> _delegate;
+    id <TVShowManagerProtocol> _delegate;
 }
 
 @property (nonatomic, strong) id delegate;
