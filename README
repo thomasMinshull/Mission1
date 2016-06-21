@@ -1,0 +1,5 @@
+MissionPossible is a simple app, built by Tom Minshull in Oct of 2015 under the mentorship of Michael Thompson. 
+
+The point of the app was to gain experience setting up UITableViews, UICollectionViews, and gain some basic experience interacting with API's. 
+
+I imported some external libraries using cocoapods to aid with the loading and caching web images, displaying progress huds to the user, and to implement pull to refresh on the UITableView. 
